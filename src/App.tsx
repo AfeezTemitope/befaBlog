@@ -1,14 +1,12 @@
-import './App.css'
-import HomePage from "./pages/HomePage.tsx";
+import './App.css';
+import router from './AppRoutes.tsx';
+import { RouterProvider } from "react-router-dom";
 
 function App() {
-
-
-  return (
-    <div>
-        <HomePage/>
-    </div>
-  )
+    return (
+        <RouterProvider router={router}>
+        </RouterProvider>
+    );
 }
 
-export default App
+export default App;

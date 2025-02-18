@@ -1,4 +1,3 @@
-import React from "react";
 import Befa from '../assets/Befa.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faTiktok, faYoutube } from '@fortawesome/free-brands-svg-icons';
@@ -11,7 +10,7 @@ const Footer: React.FC = () => {
             <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
 
                 {/* Logo and Academy Info */}
-                <div className="mb-3 md:mb-0 text-center md:text-left flex flex-col items-center md:items-start"> {/* Center on small, align left on larger */}
+                <div className="mb-3 md:mb-0 text-center md:text-left flex flex-col items-center md:items-start">
                     <img
                         src={Befa}
                         alt="Budu Elite Football Academy Logo"
@@ -42,18 +41,18 @@ const Footer: React.FC = () => {
                 {/* App Links and Social Message */}
                 <div className="text-center md:text-right md:self-center"> {/* Vertically center on larger screens */}
                     <p className="mb-2">Get updates and follow us on social media!</p>
-                    <div className="flex space-x-4 justify-center md:justify-end">
+                    <div className="flex space-x-4 justify-center items-center md:justify-end">
                         <a href="#" target="_blank" rel="noopener noreferrer">
-                            <img src="/app_store_badge.png" alt="App Store" className="h-12 w-auto" />
+                            <img src="https://icon-library.com/images/app-store-icon-png/app-store-icon-png-14.jpg" alt="App Store" className="h-12 w-auto" />
                         </a>
                         <a href="#" target="_blank" rel="noopener noreferrer">
-                            <img src="/google_play_badge.png" alt="Google Play" className="h-12 w-auto" />
+                            <img src="https://th.bing.com/th/id/R.a5c4a0ae0a1684828655ea8f51d7d190?rik=fO8ghz3gzTM4ow&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2fgoogle-play-icon-transparent%2fgoogle-play-icon-transparent-5.png&ehk=X6UOUpA%2bOVni4FAfy4Byq57nRBDLCnPCJ%2bi%2fYUt0OWc%3d&risl=&pid=ImgRaw&r=0" alt="Google Play" className="h-32 w-auto" />
                         </a>
                     </div>
                 </div>
             </div>
 
-            {/* Bottom Section */}
+
             <div className="border-t border-gray-700 py-4 text-center">
                 <p>&copy; {currentYear} Budu Elite Football Academy. All rights reserved.</p>
                 <div className="flex flex-col md:flex-row justify-center items-center mt-2 space-x-0 md:space-x-4">

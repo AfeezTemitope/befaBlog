@@ -1,4 +1,3 @@
-import React from 'react';
 import Befa from '../assets/Befa.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faUserCircle } from '@fortawesome/free-solid-svg-icons';
