@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import backgroundImage from '../assets/befa.png';
+import backgroundImage from '../assets/Befa.png';
 
 const AdminAuth: React.FC = () => {
     const [username, setUsername] = useState("");
