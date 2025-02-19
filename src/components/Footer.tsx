@@ -9,7 +9,6 @@ const Footer: React.FC = () => {
         <footer className="bg-black text-white py-8">
             <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
 
-                {/* Logo and Academy Info */}
                 <div className="mb-3 md:mb-0 text-center md:text-left flex flex-col items-center md:items-start">
                     <img
                         src={Befa}
@@ -18,7 +17,7 @@ const Footer: React.FC = () => {
                     />
                     <h3 className="text-2xl font-bold mb-2 ">Budu Elite Football Academy</h3>
                     <p className="text-gray-400">Budu Rd, Lagos</p>
-                    <div className="flex space-x-4 mb-4 mt-2"> {/* Removed justify classes here */}
+                    <div className="flex space-x-4 mb-4 mt-2">
                         <a href="#" target="_blank" rel="noopener noreferrer">
                             <FontAwesomeIcon icon={faInstagram} size="2x" className="hover:text-blue-500" />
                         </a>
@@ -32,14 +31,14 @@ const Footer: React.FC = () => {
                 </div>
 
                 {/* Academy Links */}
-                <div className="mb-6 md:mb-0 text-center md:text-left md:self-center"> {/* Vertically center on larger screens */}
+                <div className="mb-6 md:mb-0 text-center md:text-left md:self-center">
                     <a href="#" className="block hover:underline mb-2">About The Academy</a>
                     <a href="#" className="block hover:underline mb-2">Contact Us</a>
                     <a href="#" className="block hover:underline">FAQ</a>
                 </div>
 
                 {/* App Links and Social Message */}
-                <div className="text-center md:text-right md:self-center"> {/* Vertically center on larger screens */}
+                <div className="text-center md:text-right md:self-center">
                     <p className="mb-2">Get updates and follow us on social media!</p>
                     <div className="flex space-x-4 justify-center items-center md:justify-end">
                         <a href="#" target="_blank" rel="noopener noreferrer">
