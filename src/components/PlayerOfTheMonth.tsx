@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {FaTrophy} from "react-icons/fa"
 
 interface Player {
     name: string;
@@ -47,15 +48,21 @@ const PlayerOfTheMonth: React.FC = () => {
 
     if (player) {
         return (
-            <div className="container mx-auto p-4 bg-gray-100">
-                <div className="bg-gray-800 rounded-lg shadow-md p-6 mb-4 text-center">
-                    <h2 className="text-2xl font-semibold text-white mb-2">{player.name}</h2>
-                    <p className="text-gray-400">Position: {player.position}</p>
+            <div className="container mx-auto p-2">
+                <div className="bg-black rounded-lg shadow-md p-4 mb-4 text-center border-4 border-green-500">
+                    <h1 className="text-3xl font-bold text-green-500 mb-1 flex items-center justify-center">
+                        <FaTrophy className="text-white mr-2 text-5xl font-extrabold"/>
+                        PLAYER OF THE MONTH
+                        <FaTrophy className="text-white ml-2 text-5xl font-extrabold"/>
+                    </h1>
+                    <h2 className="text-2xl font-bold text-white mb-1">{player.name}</h2>
+                    <p className="text-gray-400 font-semibold">{player.position}</p>
                 </div>
 
                 <div className="flex flex-nowrap overflow-x-auto gap-4 py-4 sm:py-6">
                     {player.image_urls.map((imageUrl, index) => (
-                        <div key={index} className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80 overflow-hidden rounded-lg shadow-md transition-transform duration-300 ease-in-out hover:scale-90 flex-shrink-0">
+                        <div key={index}
+                             className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80 overflow-hidden rounded-lg shadow-md transition-transform duration-300 ease-in-out hover:scale-90 flex-shrink-0">
                             <img
                                 src={imageUrl}
                                 alt={`Player Image ${index + 1}`}
@@ -67,7 +74,8 @@ const PlayerOfTheMonth: React.FC = () => {
             </div>
         );
     } else {
-        return <div className="text-center text-lg font-medium text-gray-700 py-8">No player information available.</div>;
+        return <div className="text-center text-lg font-medium text-gray-700 py-8">No player information
+            available.</div>;
     }
 };
 

@@ -20,13 +20,13 @@ const TrainingScheduleItem: React.FC<{ trainingDay: TrainingDay }> = ({ training
     };
 
     return (
-        <div className="bg-white rounded-lg shadow-md p-4 min-w-56 sm:min-w-64 md:min-w-72 lg:min-w-80 xl:min-w-80">
-            <div className={`text-center font-semibold mb-2 ${getJerseyColorClass(trainingDay.jersey_color)}`}>
+        <div className={`bg-white rounded-lg shadow-md p-2 flex-shrink-0 w-60 ${getJerseyColorClass(trainingDay.jersey_color)}`}>
+            <div className={`text-center font-bold mb-1 ${getJerseyColorClass(trainingDay.jersey_color)}`}>
                 {trainingDay.day}
             </div>
-            <p className="text-gray-700 text-sm">{trainingDay.date}</p>
-            <p className="text-gray-700 text-sm">Time: {trainingDay.time}</p>
-            <p className="text-gray-700 text-sm">Venue: {trainingDay.venue}</p>
+            <p className="text-gray-700 text-sm text-center font-semibold">{trainingDay.date}</p>
+            <p className="text-gray-700 text-sm text-center font-semibold">Time: {trainingDay.time}</p>
+            <p className="text-gray-700 text-sm text-center font-semibold">Venue: {trainingDay.venue}</p>
         </div>
     );
 };
@@ -40,10 +40,10 @@ const TrainingSchedule: React.FC = () => {
     ];
 
     return (
-        <div className="mt-8">
-            <h3 className="text-l font-semibold mb-4 text-center">Training Schedule</h3>
-            <div className="overflow-x-auto">
-                <div className="flex flex-nowrap gap-4 p-4">
+        <div className="flex flex-col items-center mt-4 mb-4">
+            <h3 className="text-l font-bold mb-2 text-center">Training Schedule</h3>
+            <div className="overflow-x-auto whitespace-nowrap max-w-full">
+                <div className="flex gap-4 p-2">
                     {trainingSchedule.map((trainingDay, index) => (
                         <TrainingScheduleItem key={index} trainingDay={trainingDay} />
                     ))}

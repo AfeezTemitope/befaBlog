@@ -1,28 +1,36 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Befa from '../assets/Befa.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faUserCircle } from '@fortawesome/free-solid-svg-icons';
-// import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const Header: React.FC = () => {
-    // const navigate = useNavigate(); // Initialize useNavigate hook
+    const navigate = useNavigate();
 
-    // const goToLogin = () => {
-    //     navigate('/login'); // Use navigate function
-    // };
+    const goToHome = () => {
+        navigate('/');
+    };
 
     return (
-        <header className="bg-black text-white py-4 px-4 md:px-8 flex flex-row md:flex-row justify-between items-center border-b border-l-emerald-400">
-            <div className="mb-4 md:mb-0 text-center md:text-left">
-                <img src={Befa} alt="Befa Logo" className="h-12 w-auto" />
+        <header className="bg-black text-white py-4 px-4 md:px-8 flex md:flex-row justify-between items-center border-b border-l-emerald-400">
+            <div className="mb-4 md:mb-0 cursor-pointer" onClick={goToHome}>
+                <img src={Befa} alt="Befa Logo" className="h-12 w-auto md:h-16" />
             </div>
-            <div className="flex items-center space-x-4 justify-center md:justify-end">
+            <div className="flex flex-col items-center text-center mb-4 md:mb-0">
+                <span className="text-xl font-bold">BEFA</span>
+                <span className="text-sm">budu elite football academy</span>
+            </div>
+            <div className="flex items-center space-x-4">
                 <FontAwesomeIcon
                     icon={faUserCircle}
-                    size="2x"
+                    size="lg"
                     className="hover:text-gray-400 cursor-pointer"
-                    // onClick={goToLogin}
                 />
-                <FontAwesomeIcon icon={faSearch} size="2x" className="hover:text-gray-400" />
+                <FontAwesomeIcon
+                    icon={faSearch}
+                    size="lg"
+                    className="hover:text-gray-400"
+                />
             </div>
         </header>
     );
