@@ -40,7 +40,7 @@ const FootballNews: React.FC = () => {
             {loading && <p className="text-center text-xl">Loading...</p>}
             {error && <p className="text-center text-red-500">{error}</p>}
             {articles.length > 0 && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                     {articles.map(({ title, description, url }, index) => (
                         <div key={index} className="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
                             <h2 className="text-xl font-semibold text-gray-800">{title}</h2>
