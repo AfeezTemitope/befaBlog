@@ -20,7 +20,7 @@ const TrainingScheduleItem: React.FC<{ trainingDay: TrainingDay }> = ({ training
     };
 
     return (
-        <div className={`bg-white rounded-lg shadow-md p-2 flex-shrink-0 w-60 ${getJerseyColorClass(trainingDay.jersey_color)}`}>
+        <div className={`bg-white rounded-lg shadow-md p-2 flex-shrink-0 w-60 flex-col ${getJerseyColorClass(trainingDay.jersey_color)}`}>
             <div className={`text-center font-bold mb-1 ${getJerseyColorClass(trainingDay.jersey_color)}`}>
                 {trainingDay.day}
             </div>
@@ -40,7 +40,7 @@ const TrainingSchedule: React.FC = () => {
     ];
 
     return (
-        <div className="flex flex-col items-center mt-4 mb-4">
+        <div className="flex-col flex items-center mt-4 mb-4">
             <h3 className="text-l font-bold mb-2 text-center">Training Schedule</h3>
             <div className="overflow-x-auto whitespace-nowrap max-w-full">
                 <div className="flex gap-4 p-2">

@@ -13,7 +13,7 @@ const router = createBrowserRouter([
         element: <AdminAuth />,
     },
     {
-        path: 'PlayerCreation',
+        path: '/PlayerCreation',
         element: <PlayerCreation/>
     }
 ]);
