@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import backgroundImage from '../assets/Befa.png';
 
 const AdminAuth: React.FC = () => {
     const [username, setUsername] = useState("");
@@ -24,12 +23,8 @@ const AdminAuth: React.FC = () => {
             });
 
             if (response.ok) {
-                localStorage.setItem('isAuthenticated', 'true');
-                localStorage.setItem('username', username);
-                localStorage.setItem('password', password);
-                setUsername(""); // Clear form fields
-                setPassword("");
-                history("/PlayerCreation");
+                sessionStorage.setItem('isAuthenticated', 'true');
+                history("/AdminPanel");
             } else if (response.status === 401) {
                 setError("Invalid credentials");
             } else {
@@ -41,13 +36,14 @@ const AdminAuth: React.FC = () => {
             setError("An error occurred during login.");
         } finally {
             setIsLoading(false);
+            setUsername("");
+            setPassword("");
         }
     };
 
     return (
-        <div className="h-screen bg-cover bg-center relative flex items-center justify-center bg-[length:100%_100%]" style={{ backgroundImage: `url(${backgroundImage})` }}>
-            <div className="absolute inset-0 bg-black opacity-50"></div>
-            <div className="relative z-10 max-w-sm w-full mx-auto p-6 border border-gray-300 rounded-md shadow-lg bg-white bg-opacity-80">
+        <div className="min-h-screen flex items-center justify-center">
+            <div className="max-w-sm w-full mx-auto p-6 border border-gray-300 rounded-md shadow-lg bg-white">
                 <h2 className="text-2xl font-semibold mb-4">Login</h2>
                 <form onSubmit={handleLogin} className="space-y-4">
                     <div>
@@ -62,6 +58,7 @@ const AdminAuth: React.FC = () => {
                             onChange={(e) => setUsername(e.target.value)}
                             className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                             required
+                            autoComplete="off"
                         />
                     </div>
 
@@ -77,6 +74,7 @@ const AdminAuth: React.FC = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                             required
+                            autoComplete="off"
                         />
                     </div>
 

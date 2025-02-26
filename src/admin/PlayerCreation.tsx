@@ -1,7 +1,5 @@
-// PlayerCreation.tsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import backgroundImage from "../assets/Befa.png"
 
 const PlayerCreation: React.FC = () => {
     const [name, setName] = useState("");
@@ -93,11 +91,9 @@ const PlayerCreation: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen bg-cover bg-center relative flex items-center justify-center bg-[length:100%_100%]"
-             style={{backgroundImage: `url(${backgroundImage})`}}>
-            <div className="absolute inset-0 bg-black opacity-50"></div>
+        <div className="min-h-screen flex items-center justify-center">
             <div
-                className="relative z-10 max-w-lg w-full mx-auto p-4 md:p-6 lg:p-8 border border-gray-300 rounded-md shadow-lg bg-white bg-opacity-80">
+                className="max-w-lg w-full mx-auto p-4 md:p-6 lg:p-8 border border-gray-300 rounded-md shadow-lg bg-white">
                 <h2 className="text-2xl font-semibold mb-4">Create Player</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>

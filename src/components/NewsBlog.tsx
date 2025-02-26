@@ -7,7 +7,7 @@ interface Article {
     url: string;
     urlToImage?: string;
 }
-// helo
+
 const FootballNews: React.FC = () => {
     const [articles, setArticles] = useState<Article[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
@@ -20,7 +20,6 @@ const FootballNews: React.FC = () => {
                 const response = await axios.get('https://newsapi.org/v2/top-headlines', {
                     params: {
                         category: 'sports',
-                        q: 'football',
                         apiKey: apiUrl,
                     },
                 });

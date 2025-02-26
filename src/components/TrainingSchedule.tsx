@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface TrainingDay {
+    id?: number;
     day: string;
     date: string;
     time: string;
@@ -8,46 +9,53 @@ interface TrainingDay {
     jersey_color: string;
 }
 
-const TrainingScheduleItem: React.FC<{ trainingDay: TrainingDay }> = ({ trainingDay }) => {
-    const getJerseyColorClass = (jerseyColor: string) => {
-        switch (jerseyColor.toLowerCase()) {
-            case 'red': return 'text-red-500';
-            case 'blue': return 'text-blue-500';
-            case 'green': return 'text-green-500';
-            case 'yellow': return 'text-yellow-500';
-            default: return 'text-gray-700';
-        }
-    };
-
-    return (
-        <div className={`bg-white rounded-lg shadow-md p-2 flex-shrink-0 w-60 flex-col ${getJerseyColorClass(trainingDay.jersey_color)}`}>
-            <div className={`text-center font-bold mb-1 ${getJerseyColorClass(trainingDay.jersey_color)}`}>
-                {trainingDay.day}
-            </div>
-            <p className="text-gray-700 text-sm text-center font-semibold">{trainingDay.date}</p>
-            <p className="text-gray-700 text-sm text-center font-semibold">Time: {trainingDay.time}</p>
-            <p className="text-gray-700 text-sm text-center font-semibold">Venue: {trainingDay.venue}</p>
-        </div>
-    );
-};
-
 const TrainingSchedule: React.FC = () => {
-    const trainingSchedule: TrainingDay[] = [
-        { day: "Monday", date: "2025-02-19", time: "10:00 AM", venue: "Stadium A", jersey_color: "Red" },
-        { day: "Wednesday", date: "2025-02-21", time: "10:00 AM", venue: "Stadium B", jersey_color: "Blue" },
-        { day: "Friday", date: "2025-02-23", time: "10:00 AM", venue: "Stadium C", jersey_color: "Green" },
-        { day: "Saturday", date: "2025-02-24", time: "10:00 AM", venue: "Stadium D", jersey_color: "Yellow" },
-    ];
+    const [trainingSchedule, setTrainingSchedule] = useState<TrainingDay[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const apiUrl = import.meta.env.VITE_BACKEND_URL || 'http://127.0.0.1:5000/';
+
+    useEffect(() => {
+        const fetchSchedule = async () => {
+            setLoading(true);
+            setError(null);
+            try {
+                const response = await fetch(`${apiUrl}schedule`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data: TrainingDay[] = await response.json();
+                setTrainingSchedule(data);
+            } catch (err) {
+                if (err instanceof Error) {
+                    setError(err.message);
+                } else {
+                    setError("An unexpected error occurred.");
+                }
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchSchedule();
+    }, [apiUrl]);
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
 
     return (
-        <div className="flex-col flex items-center mt-4 mb-4">
-            <h3 className="text-l font-bold mb-2 text-center">Training Schedule</h3>
-            <div className="overflow-x-auto whitespace-nowrap max-w-full">
-                <div className="flex gap-4 p-2">
-                    {trainingSchedule.map((trainingDay, index) => (
-                        <TrainingScheduleItem key={index} trainingDay={trainingDay} />
-                    ))}
-                </div>
+        <div className="p-4 text-center items-center justify-center">
+            <h2 className="text-xl font-bold mb-4 text-green-500">Training Schedule</h2>
+            <div className="overflow-x-auto whitespace-nowrap">
+                {trainingSchedule.map((day) => (
+                    <div key={day.id} className="inline-block border p-4 rounded shadow m-2">
+                        <p><strong className="text-red-500">Day:</strong> {day.day}</p>
+                        <p><strong>Date:</strong> {day.date}</p>
+                        <p><strong className="text-green-700">Time:</strong> {day.time}</p>
+                        <p><strong>Venue:</strong> {day.venue}</p>
+                        <p><strong>Jersey Color:</strong> {day.jersey_color}</p>
+                    </div>
+                ))}
             </div>
         </div>
     );

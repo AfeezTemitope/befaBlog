@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import HomePage from "./pages/HomePage.tsx";
 import AdminAuth from "./pages/AdminAuth.tsx";
-import PlayerCreation from "./admin/PlayerCreation.tsx";
+import AdminPanel from "./admin/AdminPanel.tsx";
 
 const router = createBrowserRouter([
     {
@@ -13,8 +13,8 @@ const router = createBrowserRouter([
         element: <AdminAuth />,
     },
     {
-        path: '/PlayerCreation',
-        element: <PlayerCreation/>
+        path: '/AdminPanel',
+        element: <AdminPanel/>
     }
 ]);
 
