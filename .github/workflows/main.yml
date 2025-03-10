@@ -22,6 +22,9 @@ jobs:
         run: npm install  
 
       - name: Build the project  
+        env:  
+          VITE_BACKEND_URL: ${{ secrets.VITE_BACKEND_URL }}  
+          VITE_NEWS_API_URL: ${{ secrets.VITE_NEWS_API_URL }}  
         run: npm run build  
 
       - name: Install AWS CLI  
