@@ -16,7 +16,7 @@ jobs:
     - name: Set up Node.js  
       uses: actions/setup-node@v2  
       with:  
-        node-version: '23.8.0'  
+        node-version: '16'  
 
     - name: Install dependencies  
       run: npm install  
@@ -29,6 +29,7 @@ jobs:
         AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}  
         AWS_REGION: ${{ secrets.AWS_REGION }}  
       run: |  
+        mkdir -p ~/.aws    # Create the directory if it doesn't exist  
         echo "[default]" > ~/.aws/config  
         echo "region = ${AWS_REGION}" >> ~/.aws/config  
         aws sts assume-role --role-arn $AWS_ROLE_ARN --role-session-name github-actions-session \
