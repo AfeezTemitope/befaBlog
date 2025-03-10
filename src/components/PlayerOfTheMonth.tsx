@@ -20,11 +20,14 @@ const PlayerOfTheMonth: React.FC = () => {
 
             try {
                 const response = await fetch(`${apiUrl}player`);
-                if (response.ok) {
+                const contentType = response.headers.get("Content-Type");
+
+                if (response.ok && contentType?.includes("application/json")) {
                     const data = await response.json();
                     setPlayer(data);
                 } else {
-                    console.error("Error fetching player:", response.status, response.statusText);
+                    const text = await response.text();
+                    console.error("Error: Expected JSON, but got:", text);
                     setError("Error fetching player data.");
                 }
             } catch (error) {
@@ -36,7 +39,8 @@ const PlayerOfTheMonth: React.FC = () => {
         };
 
         fetchPlayer();
-    }, []);
+    }, [apiUrl]);
+
 
     if (isLoading) {
         return <div className="text-center text-lg font-medium text-gray-700 py-8">Loading player information...</div>;
