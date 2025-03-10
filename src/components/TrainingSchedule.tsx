@@ -21,9 +21,7 @@ const TrainingSchedule: React.FC = () => {
             setError(null);
             try {
                 const response = await fetch(`${apiUrl}schedule`);
-                const contentType = response.headers.get("Content-Type");
-
-                if (response.ok && contentType?.includes("application/json")) {
+                if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data: TrainingDay[] = await response.json();
