@@ -1,0 +1,45 @@
+name: Deploy befa to S3  
+
+on:  
+  push:  
+    branches:  
+      - main   
+
+jobs:  
+  deploy:  
+    runs-on: ubuntu-latest  
+
+    steps:  
+      - name: Checkout code  
+        uses: actions/checkout@v4  
+
+      - name: Set up Node.js  
+        uses: actions/setup-node@v4  
+        with:  
+          node-version: '23.8.0'  
+
+      - name: Install dependencies  
+        run: npm install  
+
+      - name: Build the project  
+        env:  
+          VITE_BACKEND_URL: ${{ secrets.VITE_BACKEND_URL }}  
+          VITE_NEWS_API_URL: ${{ secrets.VITE_NEWS_API_URL }}  
+        run: npm run build  
+
+      - name: Install AWS CLI  
+        run: |  
+          curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"  
+          unzip awscliv2.zip  
+          sudo ./aws/install --update  
+
+      - name: Configure AWS credentials  
+        uses: aws-actions/configure-aws-credentials@v1  
+        with:  
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}  
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  
+          aws-region: eu-north-1  
+
+      - name: Upload to S3  
+        run: |  
+          aws s3 sync ./dist s3://befa --delete  
